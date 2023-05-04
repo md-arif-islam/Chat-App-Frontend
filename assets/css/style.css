@@ -168,6 +168,12 @@ body {
   padding: 5px 10px;
   margin-top: 10px;
   display: inline-block;
+  transition: 0.3s ease;
+}
+
+.sugessions-items a:hover {
+  background-color: blue;
+  color: #fff;
 }
 
 .msger-input:hover,
