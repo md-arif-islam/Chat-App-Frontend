@@ -1,3 +1,9 @@
+<?php
+
+$section = $_REQUEST['section'] ?? 'dashboard';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +15,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
@@ -39,7 +42,7 @@
                     </div>
 
                     <div class="msg-text">
-                        Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
+                        Hi, welcome to SimpleChat! Go ahead and send me a message. ðŸ˜„
                     </div>
                 </div>
             </div>
@@ -85,11 +88,91 @@
         </form>
     </section>
 
+        <section>
+            <div class="login center">
+                <div class="login-container">
+                    <label for="show" class="close-btn fas fa-times" title="close"></label>
+                    <div class="text">
+                        Login Form
+                    </div>
+                    <form action="#">
+                        <div class="data">
+                            <input type="text" placeholder="Email" required>
+                        </div>
+                        <div class="data">
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div class="btn">
+                            <div class="inner"></div>
+                            <button type="submit">login</button>
+                        </div>
+                        <div class="signup-link">
+                            Not a member? <a href="#" class="signup-btn">Signup now</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="registration center">
+                <div class="registration-container">
+                    <label for="show" class="close-btn fas fa-times" title="close"></label>
+                    <div class="text">
+                        Register Form
+                    </div>
+                    <form action="login_reg_core.php" method="POST">
+                        <div class="data">
+                            <input type="text" name="fname" placeholder="Full Name" required>
+                        </div>
+                        <div class="data">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="data">
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="btn">
+                            <div class="inner"></div>
+
+                            <input type="hidden" name="action" value="registration">
+                            <button type="submit">registration</button>
+                        </div>
+                        <div class="signup-link">
+                            Have a account? <a href="#" class="login-btn">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>const msgerForm = $(".msger-inputarea");
+    <script>
+        const msgerForm = $(".msger-inputarea");
         const msgerInput = $(".msger-input");
         const msgerInputFile = $(".msger-input-file");
         const msgerChat = $(".msger-chat");
+        const login = $(".login");
+        const registration = $(".registration");
+        const loginBtn = $(".login-btn");
+        const signupBtn = $(".signup-btn");
+        const closeBtn = $(".close-btn");
+
+        signupBtn.click(function() {
+            login.hide();
+            registration.show();
+        });
+
+        loginBtn.click(function() {
+            registration.hide();
+            login.show();
+        });
+
+        closeBtn.click(function() {
+            registration.hide();
+            login.hide();
+        });
+
+
 
         const BOT_MSGS = [
             "Hi, how are you?",
@@ -104,38 +187,42 @@
         const BOT_NAME = "AI BOT";
         const PERSON_NAME = "CLIENT";
 
-        msgerForm.on("submit", function (event) {
+        msgerForm.on("submit", function(event) {
             event.preventDefault();
+
+            login.show();
+
 
             const msgText = msgerInput.val();
             const binary_pdf_file = msgerInputFile[0].files[0];
+
             if (!msgText) return;
-
-
+            appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
             msgerInput.val("");
 
-            // Create a new FormData object
-            const formData = new FormData();
+            // Create a FormData object
+            var formData = new FormData();
             formData.append("query", msgText);
             formData.append("file", binary_pdf_file);
 
-            // Use the FormData object in the AJAX request
-
+            // Make the AJAX request
             $.ajax({
-                url: 'http://159.223.8.14:5001',
-                type: 'POST',
-                dataType: 'text',
-                data: {
-                    query: msgText,
-                    file: binary_pdf_file
+                url: "https://chatapi.onlinewithyou.nl:5001",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    console.log(response);
                 },
-                success: function (response) {
-                    appendMessage(PERSON_NAME, PERSON_IMG, "right", "hello");
-                },
-                error: function (xhr, status, error) {
-                    // Alert message that something went wrong.
+                error: function(jqXHR, textStatus, errorMessage) {
+                    console.log(jqXHR, textStatus, errorMessage);
                 }
             });
+
+            botResponse();
+
+            header("location:index.php?success");
 
         });
 
@@ -172,8 +259,8 @@
         const suggestionItems = $('#sugessions-items a');
         const inputField = $('.msger-input');
 
-        suggestionItems.each(function () {
-            $(this).on('click', function (event) {
+        suggestionItems.each(function() {
+            $(this).on('click', function(event) {
                 const span = $(event.currentTarget).find('span');
                 const spanValue = span.text();
                 inputField.val(spanValue);
