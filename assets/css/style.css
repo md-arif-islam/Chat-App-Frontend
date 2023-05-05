@@ -19,12 +19,31 @@ html {
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  width: 1000px;
+  margin: 0 auto;
   background-color: #fffcf5;
   font-family: "Poppins", sans-serif;
+}
+
+.hero {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: 0.25rem;
+  background-clip: text;
+  color: #f59e0b;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+}
+.hero p {
+  color: #6b7280;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .msger {
@@ -32,8 +51,7 @@ body {
   flex-flow: column wrap;
   justify-content: space-between;
   width: 100%;
-  max-width: 867px;
-  margin: 25px 10px;
+  margin: 0 auto;
   height: 80vh;
   /* border: var(--border); */
   /* border-radius: 5px; */
@@ -164,7 +182,7 @@ body {
   line-height: 1.5;
   border-radius: 20px;
   cursor: pointer;
-  background-color: orange;
+  background-color: #fcce00;
   padding: 5px 10px;
   margin-top: 10px;
   display: inline-block;
@@ -191,16 +209,43 @@ body {
   cursor: pointer;
   padding: 0;
   transition: 0.3s ease;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  padding: 10px 13px;
 }
 
+.msger-file-label i,
 .msger-send-btn i {
   font-size: 20px;
   font-weight: bold;
   padding: 0;
 }
 
-.msger-send-btn:hover {
-  transform: scale(1.1);
+.msger-send-btn:hover,
+.msger-file-label:hover {
+  background-color: #e5e5e5;
+}
+
+.msger-file-label {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 2px;
+  margin-right: 10px;
+  color: orange;
+  transition: 0.3s ease;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.msger-input-file {
+  display: none;
+}
+
+.fa-thumbtack {
+  color: #5f5f5f;
+  font-size: 1.5em;
 }
 
 .msger-chat {

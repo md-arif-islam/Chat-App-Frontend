@@ -19,15 +19,22 @@
 </head>
 
 <body>
+    <section class="hero">
+        <h1>
+            YourService.ai
+        </h1>
+        <p>Unlock Your Potential with AI - The AI-Powered Spiritual Companion.</p>
+    </section>
+
     <section class="msger">
         <main class="msger-chat">
             <div class="msg left-msg">
-                <div class="msg-img" style="background-image: url(./assets/images/avatar.jpg)">
+                <div class="msg-img" style="background-image: url(./assets/images/robot.png)">
                 </div>
 
                 <div class="msg-bubble">
                     <div class="msg-info">
-                        <div class="msg-info-name">BOT</div>
+                        <div class="msg-info-name">AI BOT</div>
                         <div class="msg-info-time">12:45</div>
                     </div>
 
@@ -37,21 +44,21 @@
                 </div>
             </div>
 
-            <div class="msg right-msg">
-                <div class="msg-img" style="background-image: url(./assets/images/MD-Arif-Islam.png)">
+            <!-- <div class="msg right-msg">
+                <div class="msg-img" style="background-image: url(./assets/images/robot.png)">
                 </div>
 
                 <div class="msg-bubble">
                     <div class="msg-info">
-                        <div class="msg-info-name">Arif Islam</div>
+                        <div class="msg-info-name">AI Bot</div>
                         <div class="msg-info-time">12:46</div>
                     </div>
 
                     <div class="msg-text">
-                        You can change your name in JS section!
+                        Hay, How can I help you ?
                     </div>
                 </div>
-            </div>
+            </div> -->
         </main>
 
         <div class="sugessions">
@@ -70,16 +77,17 @@
         </div>
         <form class="msger-inputarea">
             <input type="text" class="msger-input" placeholder="Enter your message...">
-            <input type="file" class="msger-input-file">
+            <label for="file-input" class="msger-file-label">
+                <i class="fas fa-file-contract"></i>
+            </label>
+            <input type="file" class="msger-input-file" id="file-input">
             <button type="submit" class="msger-send-btn"><i class="far fa-paper-plane"></i></button>
         </form>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        const msgerForm = $(".msger-inputarea");
+    <script>const msgerForm = $(".msger-inputarea");
         const msgerInput = $(".msger-input");
-        const msgerInputFile = $(".msger-input-file");
         const msgerChat = $(".msger-chat");
 
         const BOT_MSGS = [
@@ -90,59 +98,40 @@
             "I feel sleepy! :("
         ];
 
-        const BOT_IMG = "./assets/images/avatar.jpg";
-        const PERSON_IMG = "./assets/images/MD-Arif-Islam.png";
-        const BOT_NAME = "BOT";
-        const PERSON_NAME = "Arif Islam";
+        const PERSON_IMG = "./assets/images/user-avatar.png";
+        const BOT_IMG = "./assets/images/robot.png";
+        const BOT_NAME = "AI BOT";
+        const PERSON_NAME = "CLIENT";
 
         msgerForm.on("submit", function (event) {
             event.preventDefault();
 
             const msgText = msgerInput.val();
-            const binary_pdf_file = msgerInputFile[0].files[0];
             if (!msgText) return;
 
-            // Create a new FormData object
-            const formData = new FormData();
-            formData.append("query", msgText);
-            formData.append("file", binary_pdf_file);
+            appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+            msgerInput.val("");
 
-            // Use the FormData object in the AJAX request
-            $.ajax({
-                url: 'http://159.223.8.14:5001',
-                type: 'POST',
-                dataType: 'text',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    console.log(response);
-                },
-                error: function (xhr, status, error) {
-                    alert("Something went wrong");
-                }
-            });
-
+            botResponse();
         });
 
         function appendMessage(name, img, side, text) {
+            //   Simple solution for small apps
             const msgHTML = `
             <div class="msg ${side}-msg">
-                <div class="msg-img" style="background-image: url(${img})"></div>
-
-                <div class="msg-bubble">
-                    <div class="msg-info">
-                        <div class="msg-info-name">${name}</div>
-                        <div class="msg-info-time">${formatDate(new Date())}</div>
-                    </div>
-
-                    <div class="msg-text">${text}</div>
+              <div class="msg-img" style="background-image: url(${img})"></div>
+              <div class="msg-bubble">
+                <div class="msg-info">
+                  <div class="msg-info-name">${name}</div>
+                  <div class="msg-info-time">${formatDate(new Date())}</div>
                 </div>
+                <div class="msg-text">${text}</div>
+              </div>
             </div>
-        `;
+          `;
 
             msgerChat.append(msgHTML);
-            msgerChat.scrollTop(msgerChat[0].scrollHeight);
+            msgerChat.scrollTop(msgerChat.prop("scrollHeight"));
         }
 
         function botResponse() {
@@ -155,14 +144,16 @@
             }, delay);
         }
 
-        // Suggestion
+        // Sugge
         const suggestionItems = $('#sugessions-items a');
         const inputField = $('.msger-input');
 
-        suggestionItems.on('click', function (event) {
-            const span = $(this).find('span');
-            const spanValue = span.text();
-            inputField.val(spanValue);
+        suggestionItems.each(function () {
+            $(this).on('click', function (event) {
+                const span = $(event.currentTarget).find('span');
+                const spanValue = span.text();
+                inputField.val(spanValue);
+            });
         });
 
         // Utils
