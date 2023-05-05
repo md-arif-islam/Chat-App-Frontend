@@ -88,6 +88,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>const msgerForm = $(".msger-inputarea");
         const msgerInput = $(".msger-input");
+        const msgerInputFile = $(".msger-input-file");
         const msgerChat = $(".msger-chat");
 
         const BOT_MSGS = [
@@ -107,12 +108,35 @@
             event.preventDefault();
 
             const msgText = msgerInput.val();
+            const binary_pdf_file = msgerInputFile[0].files[0];
             if (!msgText) return;
 
-            appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+
             msgerInput.val("");
 
-            botResponse();
+            // Create a new FormData object
+            const formData = new FormData();
+            formData.append("query", msgText);
+            formData.append("file", binary_pdf_file);
+
+            // Use the FormData object in the AJAX request
+
+            $.ajax({
+                url: 'http://159.223.8.14:5001',
+                type: 'POST',
+                dataType: 'text',
+                data: {
+                    query: msgText,
+                    file: binary_pdf_file
+                },
+                success: function (response) {
+                    appendMessage(PERSON_NAME, PERSON_IMG, "right", "hello");
+                },
+                error: function (xhr, status, error) {
+                    // Alert message that something went wrong.
+                }
+            });
+
         });
 
         function appendMessage(name, img, side, text) {
