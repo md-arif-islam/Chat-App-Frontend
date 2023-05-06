@@ -15,9 +15,12 @@ $section = $_REQUEST['section'] ?? 'dashboard';
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
@@ -42,7 +45,7 @@ $section = $_REQUEST['section'] ?? 'dashboard';
                     </div>
 
                     <div class="msg-text">
-                        Hi, welcome to SimpleChat! Go ahead and send me a message. ðŸ˜„
+                        Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
                     </div>
                 </div>
             </div>
@@ -88,62 +91,62 @@ $section = $_REQUEST['section'] ?? 'dashboard';
         </form>
     </section>
 
-        <section>
-            <div class="login center">
-                <div class="login-container">
-                    <label for="show" class="close-btn fas fa-times" title="close"></label>
-                    <div class="text">
-                        Login Form
-                    </div>
-                    <form action="#">
-                        <div class="data">
-                            <input type="text" placeholder="Email" required>
-                        </div>
-                        <div class="data">
-                            <input type="password" placeholder="Password" required>
-                        </div>
-                        <div class="btn">
-                            <div class="inner"></div>
-                            <button type="submit">login</button>
-                        </div>
-                        <div class="signup-link">
-                            Not a member? <a href="#" class="signup-btn">Signup now</a>
-                        </div>
-                    </form>
+    <section>
+        <div class="login center">
+            <div class="login-container">
+                <label for="show" class="close-btn fas fa-times" title="close"></label>
+                <div class="text">
+                    Login Form
                 </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="registration center">
-                <div class="registration-container">
-                    <label for="show" class="close-btn fas fa-times" title="close"></label>
-                    <div class="text">
-                        Register Form
+                <form action="#">
+                    <div class="data">
+                        <input type="text" placeholder="Email" required>
                     </div>
-                    <form action="login_reg_core.php" method="POST">
-                        <div class="data">
-                            <input type="text" name="fname" placeholder="Full Name" required>
-                        </div>
-                        <div class="data">
-                            <input type="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="data">
-                            <input type="password" name="password" placeholder="Password" required>
-                        </div>
-                        <div class="btn">
-                            <div class="inner"></div>
-
-                            <input type="hidden" name="action" value="registration">
-                            <button type="submit">registration</button>
-                        </div>
-                        <div class="signup-link">
-                            Have a account? <a href="#" class="login-btn">Login</a>
-                        </div>
-                    </form>
-                </div>
+                    <div class="data">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="btn">
+                        <div class="inner"></div>
+                        <button type="submit">login</button>
+                    </div>
+                    <div class="signup-link">
+                        Not a member? <a href="#" class="signup-btn">Signup now</a>
+                    </div>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
+
+    <section>
+        <div class="registration center">
+            <div class="registration-container">
+                <label for="show" class="close-btn fas fa-times" title="close"></label>
+                <div class="text">
+                    Register Form
+                </div>
+                <form action="login_reg_core.php" method="POST">
+                    <div class="data">
+                        <input type="text" name="fname" placeholder="Full Name" required>
+                    </div>
+                    <div class="data">
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="data">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="btn">
+                        <div class="inner"></div>
+
+                        <input type="hidden" name="action" value="registration">
+                        <button type="submit">registration</button>
+                    </div>
+                    <div class="signup-link">
+                        Have a account? <a href="#" class="login-btn">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -157,42 +160,43 @@ $section = $_REQUEST['section'] ?? 'dashboard';
         const signupBtn = $(".signup-btn");
         const closeBtn = $(".close-btn");
 
-        signupBtn.click(function() {
+        signupBtn.click(function () {
             login.hide();
             registration.show();
         });
 
-        loginBtn.click(function() {
+        loginBtn.click(function () {
             registration.hide();
             login.show();
         });
 
-        closeBtn.click(function() {
+        closeBtn.click(function () {
             registration.hide();
             login.hide();
         });
 
-
-
-        const BOT_MSGS = [
-            "Hi, how are you?",
-            "Ohh... I can't understand what you trying to say. Sorry!",
-            "I like to play games... But I don't know how to play!",
-            "Sorry if my answers are not relevant. :))",
-            "I feel sleepy! :("
-        ];
 
         const PERSON_IMG = "./assets/images/user-avatar.png";
         const BOT_IMG = "./assets/images/robot.png";
         const BOT_NAME = "AI BOT";
         const PERSON_NAME = "CLIENT";
+        const LOADING_HTML = `
+    <div class="msg left-msg loading-msg">
+        <div class="msg-img" style="background-image: url(${BOT_IMG})"></div>
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">${BOT_NAME}</div>
+            <div class="msg-info-time">${formatDate(new Date())}</div>
+          </div>
+          <div class="msg-text"><i>Typing...</i></div>
+        </div>
+      </div>
+`;
 
-        msgerForm.on("submit", function(event) {
+        msgerForm.on("submit", function (event) {
             event.preventDefault();
 
             login.show();
-
-
             const msgText = msgerInput.val();
             const binary_pdf_file = msgerInputFile[0].files[0];
 
@@ -205,6 +209,15 @@ $section = $_REQUEST['section'] ?? 'dashboard';
             formData.append("query", msgText);
             formData.append("file", binary_pdf_file);
 
+            // Append the loading indicator to the chat window
+
+            setTimeout(() => {
+                msgerChat.append(LOADING_HTML);
+                msgerChat.scrollTop(msgerChat.prop("scrollHeight"));
+            }, 500);
+
+
+
             // Make the AJAX request
             $.ajax({
                 url: "https://chatapi.onlinewithyou.nl:5001",
@@ -212,34 +225,32 @@ $section = $_REQUEST['section'] ?? 'dashboard';
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function(response) {
-                    console.log(response);
+                success: function (response) {
+                    // Remove the loading indicator
+                    msgerChat.find('.loading-msg').remove();
+
+                    appendMessage(BOT_NAME, BOT_IMG, "left", response);
                 },
-                error: function(jqXHR, textStatus, errorMessage) {
+                error: function (jqXHR, textStatus, errorMessage) {
                     console.log(jqXHR, textStatus, errorMessage);
                 }
             });
-
-            botResponse();
-
-            header("location:index.php?success");
-
         });
 
         function appendMessage(name, img, side, text) {
             //   Simple solution for small apps
             const msgHTML = `
-            <div class="msg ${side}-msg">
-              <div class="msg-img" style="background-image: url(${img})"></div>
-              <div class="msg-bubble">
-                <div class="msg-info">
-                  <div class="msg-info-name">${name}</div>
-                  <div class="msg-info-time">${formatDate(new Date())}</div>
-                </div>
-                <div class="msg-text">${text}</div>
-              </div>
-            </div>
-          `;
+    <div class="msg ${side}-msg">
+      <div class="msg-img" style="background-image: url(${img})"></div>
+      <div class="msg-bubble">
+        <div class="msg-info">
+          <div class="msg-info-name">${name}</div>
+          <div class="msg-info-time">${formatDate(new Date())}</div>
+        </div>
+        <div class="msg-text">${text}</div>
+      </div>
+    </div>
+  `;
 
             msgerChat.append(msgHTML);
             msgerChat.scrollTop(msgerChat.prop("scrollHeight"));
@@ -259,8 +270,8 @@ $section = $_REQUEST['section'] ?? 'dashboard';
         const suggestionItems = $('#sugessions-items a');
         const inputField = $('.msger-input');
 
-        suggestionItems.each(function() {
-            $(this).on('click', function(event) {
+        suggestionItems.each(function () {
+            $(this).on('click', function (event) {
                 const span = $(event.currentTarget).find('span');
                 const spanValue = span.text();
                 inputField.val(spanValue);
