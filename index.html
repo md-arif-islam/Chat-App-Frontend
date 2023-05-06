@@ -82,11 +82,11 @@ $section = $_REQUEST['section'] ?? 'dashboard';
             </div>
         </div>
         <form class="msger-inputarea">
-            <input type="text" class="msger-input" placeholder="Enter your message...">
+            <input type="text" class="msger-input" placeholder="Enter your message..." required>
             <label for="file-input" class="msger-file-label">
                 <i class="fas fa-file-contract"></i>
             </label>
-            <input type="file" class="msger-input-file" id="file-input">
+            <input type="file" class="msger-input-file" id="file-input" required>
             <button type="submit" class="msger-send-btn"><i class="far fa-paper-plane"></i></button>
         </form>
     </section>
